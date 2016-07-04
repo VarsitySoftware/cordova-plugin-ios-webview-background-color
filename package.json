@@ -1,0 +1,24 @@
+{
+  "name": "cordova-plugin-ios-webview-background-color",
+  "version": "1.0.2",
+  "description": "This plugin allows you to change the WebView Background color on iOS.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VarsitySoftware/cordova-plugin-ios-webview-background-color.git"
+  },
+  "keywords": [
+    "background",
+    "ecosystem:cordova",
+    "cordova-ios"
+  ],
+  "author": "Varsity Software, Inc",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/VarsitySoftware/cordova-plugin-ios-webview-background-color/issues"
+  },
+  "homepage": "https://github.com/VarsitySoftware/cordova-plugin-ios-webview-background-color#readme"
+}
