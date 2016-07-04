@@ -7,8 +7,4 @@
     NSString* _eventsCallbackId;
 }
 
-- (void) backgroundColorByHexString:(CDVInvokedUrlCommand*)command;
-
-- (void) _ready:(CDVInvokedUrlCommand*)command;
-
 @end
