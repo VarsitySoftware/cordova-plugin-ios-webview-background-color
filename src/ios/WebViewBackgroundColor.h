@@ -3,4 +3,6 @@
 
 @interface WebViewBackgroundColor : CDVPlugin
 
+- (void)setColor:(CDVInvokedUrlCommand*)command;
+
 @end
