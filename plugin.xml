@@ -34,7 +34,9 @@
 		<config-file target="config.xml" parent="/*">
 			<feature name="WebViewBackgroundColor">
 				<param name="ios-package" value="WebViewBackgroundColor" />
+				<param name="onload" value="true" />
 			</feature>
+			<preference name="BackgroundColor" value="#000" />
 		</config-file>
 		<header-file src="src/ios/WebViewBackgroundColor.h" />
 		<source-file src="src/ios/WebViewBackgroundColor.m" />
