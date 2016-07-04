@@ -4,7 +4,7 @@ For iOS, by [Varsity Software](https://github.com/VarsitySoftware)
 
 ## Description
 
-This plugin changes the color of the WebView background.  It is based on the plugin by Eddy Vergruggen (https://github.com/EddyVerbruggen/iOSWebViewColor-PhoneGap-Plugin). upon launch by automatically adding the following keys to the `*-Info.plist` file during the build process.
+This plugin changes the color of the WebView background.  It is based on the plugin by Eddy Vergruggen (https://github.com/EddyVerbruggen/iOSWebViewColor-PhoneGap-Plugin). 
 
 ## Installation
 
