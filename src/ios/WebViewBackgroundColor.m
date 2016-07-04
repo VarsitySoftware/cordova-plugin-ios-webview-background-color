@@ -1,50 +1,48 @@
-#import <Cordova/CDV.h>
+#import "WebViewBackgroundColor.h"
+#import <objc/runtime.h>
+#import <Cordova/CDVViewController.h>
 
-@interface WebViewBackgroundColor()
-	- (void)parseOptions:(NSDictionary *) options type:(NSString *) type;
-@end
+@implementation WebViewBackgroundColor
 
-@implementation StreamingMedia {
-	NSString* callbackId;
-	UIColor *backgroundColor;
+- (id)settingForKey:(NSString*)key
+{
+    return [self.commandDelegate.settings objectForKey:[key lowercaseString]];
 }
 
--(void)parseOptions:(NSDictionary *)options type:(NSString *) type {
-	// Common options
-	if (![options isKindOfClass:[NSNull class]] && [options objectForKey:@"color"]) {
-		[self setBackgroundColor:[options objectForKey:@"bgColor"]];
-	} else {
-		backgroundColor = [UIColor blackColor];
-	}
+- (void)observeValueForKeyPath:(NSString*)keyPath ofObject:(id)object change:(NSDictionary*)change context:(void*)context
+{
+    if ([keyPath isEqual:@"statusBarHidden"]) {
+        NSNumber* newValue = [change objectForKey:NSKeyValueChangeNewKey];
+        [self updateIsVisible:![newValue boolValue]];
+    }
 }
 
--(void)setColor:(CDVInvokedUrlCommand *) command type:(NSString *) type {
-	callbackId = command.callbackId;
-	
-	[self parseOptions:[command.arguments objectAtIndex:1] type:type];
+- (void)pluginInitialize
+{
+    BOOL isiOS7 = (IsAtLeastiOSVersion(@"7.0"));
 
-  self.webView.backgroundColor = backgroundColor; // Set background to a colour of your choosing
-	self.webView.opaque = NO; // This makes the view transparent, you may not need this.
+    
+    self.webView.backgroundColor = [UIColor greenColor]; // Set background to a colour of your choosing
+    self.webView.opaque = NO; // This makes the view transparent, you may not need this.
+
 }
 
--(void) setBackgroundColor:(NSString *)color {
-	if ([color hasPrefix:@"#"]) {
-		// HEX value
-		unsigned rgbValue = 0;
-		NSScanner *scanner = [NSScanner scannerWithString:color];
-		[scanner setScanLocation:1]; // bypass '#' character
-		[scanner scanHexInt:&rgbValue];
-		backgroundColor = [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0];
-	} else {
-		// Color name
-		NSString *selectorString = [[color lowercaseString] stringByAppendingString:@"Color"];
-		SEL selector = NSSelectorFromString(selectorString);
-		UIColor *colorObj = [UIColor blackColor];
-		if ([UIColor respondsToSelector:selector]) {
-			colorObj = [UIColor performSelector:selector];
-		}
-		backgroundColor = colorObj;
-	}
+- (void)onReset {
+    _eventsCallbackId = nil;
 }
+
+- (void) _ready:(CDVInvokedUrlCommand*)command
+{
+    _eventsCallbackId = command.callbackId;
+    [self updateIsVisible:![UIApplication sharedApplication].statusBarHidden];
+    NSString* setting = @"StatusBarOverlaysWebView";
+    if ([self settingForKey:setting]) {
+        self.statusBarOverlaysWebView = [(NSNumber*)[self settingForKey:setting] boolValue];
+        if (self.statusBarOverlaysWebView) {
+            [self resizeWebView];
+        }
+    }
+}
+
 
 @end
