@@ -1,18 +1,34 @@
-"use strict";
-function WebViewBackgroundColor() {
-}
+var exec = require('cordova/exec');
 
-WebViewBackgroundColor.prototype.setColor = function (url, options) {
-	options = options || {};
-	cordova.exec(options.successCallback || null, options.errorCallback || null, "WebViewBackgroundColor", "setColor", [url, options]);
+var WebViewBackgroundColor = {
+
+    isVisible: true,
+    backgroundColorByHexString: function (hexString) {
+        if (hexString.charAt(0) !== "#") {
+            hexString = "#" + hexString;
+        }
+
+        if (hexString.length === 4) {
+            var split = hexString.split("");
+            hexString = "#" + split[1] + split[1] + split[2] + split[2] + split[3] + split[3];
+        }
+
+        exec(null, null, "StatusBar", "backgroundColorByHexString", [hexString]);
+    },
 };
 
-WebViewBackgroundColor.install = function () {
-	if (!window.plugins) {
-		window.plugins = {};
-	}
-	window.plugins.webViewBackgroundColor = new WebViewBackgroundColor();
-	return window.plugins.webViewBackgroundColor;
-};
 
-cordova.addConstructor(WebViewBackgroundColor.install);
+// prime it. setTimeout so that proxy gets time to init
+window.setTimeout(function () {
+    exec(function (res) {
+        if (typeof res == 'object') {
+            if (res.type == 'tap') {
+                cordova.fireWindowEvent('statusTap');
+            }
+        } else {
+            WebViewBackgroundColor.isVisible = res;
+        }
+    }, null, "WebViewBackgroundColor", "_ready", []);
+}, 0);
+
+module.exports = WebViewBackgroundColor;
