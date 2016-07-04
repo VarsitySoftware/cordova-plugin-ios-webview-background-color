@@ -1,8 +1,14 @@
-#import <Foundation/Foundation.h>
 #import <Cordova/CDVPlugin.h>
+#import <Cordova/CDVInvokedUrlCommand.h>
 
-@interface WebViewBackgroundColor : CDVPlugin
+@interface WebViewBackgroundColor : CDVPlugin{
+    @protected
+    UIColor* _statusBarBackgroundColor;
+    NSString* _eventsCallbackId;
+}
 
-- (void)setColor:(CDVInvokedUrlCommand*)command;
+- (void) backgroundColorByHexString:(CDVInvokedUrlCommand*)command;
+
+- (void) _ready:(CDVInvokedUrlCommand*)command;
 
 @end
