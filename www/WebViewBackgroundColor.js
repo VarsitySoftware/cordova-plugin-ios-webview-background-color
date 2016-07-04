@@ -2,6 +2,11 @@
 function WebViewBackgroundColor() {
 }
 
+WebViewBackgroundColor.prototype.setColor = function (url, options) {
+	options = options || {};
+	cordova.exec(options.successCallback || null, options.errorCallback || null, "WebViewBackgroundColor", "setColor", [url, options]);
+};
+
 WebViewBackgroundColor.install = function () {
 	if (!window.plugins) {
 		window.plugins = {};
