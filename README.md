@@ -14,4 +14,4 @@ cordova plugin add https://github.com/VarsitySoftware/cordova-plugin-ios-webview
 
 ## Usage
 
-<preference name="WebViewBackgroundColor" value="#000000" />
+preference name="WebViewBackgroundColor" value="#000000" 
