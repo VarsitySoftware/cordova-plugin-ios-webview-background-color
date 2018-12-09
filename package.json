@@ -1,5 +1,5 @@
 {
-  "name": "cordova-plugin-ios-webview-background-color",
+  "name": "com.varsitysoftware.plugins.ios.webviewbackgroundcolor",
   "version": "1.0.2",
   "description": "This plugin allows you to change the WebView Background color on iOS.",
   "main": "index.js",
