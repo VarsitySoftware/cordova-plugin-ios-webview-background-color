@@ -7,4 +7,6 @@
     NSString* _eventsCallbackId;
 }
 
+-(void)change:(CDVInvokedUrlCommand *)command;
+
 @end
