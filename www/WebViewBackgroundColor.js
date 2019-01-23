@@ -1,4 +1,4 @@
-//var exec = require('cordova/exec');
+var exec = require('cordova/exec');
 
 //var WebViewBackgroundColor;
 
@@ -16,3 +16,6 @@ WebViewBackgroundColor.prototype.change = function (success, fail, options) {
 window.webViewBackgroundColor = new WebViewBackgroundColor();
 
 //module.exports = WebViewBackgroundColor;
+var webViewBackgroundColor = window.webViewBackgroundColor;
+
+module.exports = webViewBackgroundColor;
