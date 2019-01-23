@@ -27,4 +27,15 @@
     }   
 }
 
+- (void) change:(CDVInvokedUrlCommand *)command {
+    
+    	NSDictionary *options = [command.arguments objectAtIndex: 0];
+  
+	NSString* strColor = [options objectForKey:@"color"];
+
+    	NSLog(@"ALERT: CHANGING BACKGROUND COLOR!");
+	NSLog(@"color: %@", strColor);	
+	
+}
+
 @end
