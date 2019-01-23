@@ -3,7 +3,7 @@
 		xmlns="http://apache.org/cordova/ns/plugins/1.0"
 		xmlns:android="http://schemas.android.com/apk/res/android"
 		id="com.varsitysoftware.plugins.ios.webviewbackgroundcolor"
-		version="0.0.1">
+		version="1.0.0">
 
 	<name>IOS WebView Background Color</name>
 
@@ -25,16 +25,15 @@
 		<engine name="cordova" version=">=3.0.0" />
 	</engines>
 
-	<js-module src="www/WebViewBackgroundColor.js" name="WebViewBackgroundColor">
-		<clobbers target="webViewBackgroundColor" />
+	<js-module src="www/webViewBackgroundColor.js" name="WebViewBackgroundColor">
+		<clobbers target="plugins.webViewBackgroundColor" />
 	</js-module>
 
 	<!-- ios -->
 	<platform name="ios">
 		<config-file target="config.xml" parent="/*">
 			<feature name="WebViewBackgroundColor">
-				<param name="ios-package" value="WebViewBackgroundColor" />
-				<param name="onload" value="true" />
+				<param name="ios-package" value="WebViewBackgroundColor" />				
 			</feature>
 			<preference name="WebViewBackgroundColor" value="#000" />
 		</config-file>
