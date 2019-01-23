@@ -9,6 +9,8 @@
 
 - (void)pluginInitialize
 {   
+	NSLog(@"ALERT: INIT CUSTOM BACKGROUND COLOR!");
+	
 	NSString* setting;
 
     setting  = @"WebViewBackgroundColor";
